@@ -34,7 +34,7 @@
   "primaryTokenAttribute": "health",
   "secondaryTokenAttribute": null,
   "url": "https://github.com/julr/htbah",
-  "manifest": "https://raw.githubusercontent.com/julr/htbah/system.json",
-  "download": "https://github.com/julr/htbah/archive/master.zip",
+  "manifest": "https://raw.githubusercontent.com/julr/htbah/main/system.json",
+  "download": "https://github.com/julr/htbah/archive/main.zip",
   "license": "License.txt"
 }

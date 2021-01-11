@@ -6,7 +6,7 @@ Das System befindet sich im frühen Entwicklungsstatus. Es gibt zum jetzigen Zei
 Zukünftige Änderungen die bestehende Welten unbrauchbar machen können (breaking changes) sind nicht ausgeschlossen. 
 
 ## Installation
-Das System kann über die Manifest-URL https://raw.githubusercontent.com/julr/htbah/system.json installiert werden.
+Das System kann über die Manifest-URL https://raw.githubusercontent.com/julr/htbah/main/system.json installiert werden.
 
 ## Module
 Zum aktuellen Zeitpunkt ist nur das Grundregelwerk umgesetzt. Die Unterstützung für Module ist geplant.
