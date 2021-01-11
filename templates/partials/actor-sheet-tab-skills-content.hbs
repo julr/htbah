@@ -1,0 +1,32 @@
+<h2>{{localize name}}</h2>
+<div class="skill-info">
+    <b>{{localize "htbah.sheet.general.points"}}:</b>{{skills.points}}
+    <a class="check-roll" title="{{localize "htbah.sheet.actor.against"}} {{localize name}}" data-against="{{skills.points}}" data-name="{{localize name}}"><i class="fas fa-dice-d20"></i></a> 
+    {{#if (eq category 0)}}
+    <a class="normal-roll" title="{{localize "htbah.sheet.actor.initiative"}}" data-roll="1d10+({{skills.points}}+mod)"><i class="fas fa-people-arrows"></i></a>
+    {{/if}}
+    {{! only pc have brainstorm points}}
+    {{#if (eq actor.type 'pc')}}
+    <div class="spacer"></div>
+    <i class="fas fa-brain"></i>
+    <input class="brainstorm-edit" type="number" value="{{skills.brainstorm}}" min="0" max="{{divRounded skills.points 10}}" data-category="{{category}}" />
+    {{/if}}
+</div>
+<table class="skill-table">
+{{#each actor.items as |item id|}}
+{{#if (eq item.type 'skill')}}
+{{#if (eq item.data.category ../category)}}
+    <tr>
+        <td class="skill-name" data-item-id="{{item._id}}">{{item.name}}</td>
+        <td><input class="skill-edit" type="number" min="0" value="{{item.data.points}}" data-id="{{item._id}}"/></td>
+        <td>+{{../skills.points}}</td>
+        <td>{{add ../skills.points item.data.points}}</td>
+        <td><a class="check-roll" title="{{localize "htbah.sheet.actor.against"}} {{item.name}}" data-against="{{add ../skills.points item.data.points}}" data-name="{{item.name}}"><i class="fas fa-dice-d20"></i></a></td>
+    </tr>
+{{/if}}
+{{/if}}
+{{/each}}
+</table>
+<div class="skill-add">
+    <a class="skill-add" title="{{localize "htbah.sheet.actor.newSkill"}}" data-category="{{category}}"><i class="fas fa-plus"></i></a>
+</div>

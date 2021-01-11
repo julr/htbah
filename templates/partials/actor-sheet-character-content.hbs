@@ -1,0 +1,33 @@
+<nav class="sheet-tabs tabs" data-group="primary">
+    <a class="item" data-tab="skills">{{localize "htbah.sheet.actor.skills"}}</a>
+    <a class="item" data-tab="items">{{localize "htbah.sheet.actor.inventory"}}</a>
+    <a class="item" data-tab="biography">{{localize "htbah.sheet.actor.bio"}}</a>
+</nav>
+
+<div class="sheet-content">
+    <div class="tab skills" data-group="primary" data-tab="skills">
+        <div class="skill-content">
+            <div class="skill-column">
+                {{> "systems/htbah/templates/partials/actor-sheet-tab-skills-content.hbs" skills=data.action name="htbah.sheet.general.action" category=0}}
+            </div>
+            <div class="skill-column">
+                {{> "systems/htbah/templates/partials/actor-sheet-tab-skills-content.hbs" skills=data.knowledge name="htbah.sheet.general.knowledge" category=1}}
+            </div>
+            <div class="skill-column">
+                {{> "systems/htbah/templates/partials/actor-sheet-tab-skills-content.hbs" skills=data.social name="htbah.sheet.general.social" category=2}}
+            </div>
+        </div>
+        {{#if config.totalSkillPoints}}
+        <div class="total-skill-points">
+            <b>{{localize "htbah.sheet.actor.spentSkillPoints"}}:</b> {{totalSkillPointsSpent actor.items}}
+        </div>
+        {{/if}}
+    </div>
+    <div class="tab items" data-group="primary" data-tab="items">
+        {{> "systems/htbah/templates/partials/actor-sheet-tab-items-content.hbs" itemType="equipment" name="ITEM.TypeEquipment"}}
+        {{> "systems/htbah/templates/partials/actor-sheet-tab-items-content.hbs" itemType="simple" name="ITEM.TypeSimple"}}
+    </div>
+    <div class="tab biography" data-group="primary" data-tab="biography">
+        {{editor content=data.description target="data.description" button=true owner=owner editable=editable}}
+    </div>
+</div>

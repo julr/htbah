@@ -1,0 +1,30 @@
+<h3>{{localize name}}</h3>
+{{#if (hasItems actor itemType)}}
+<ol class="item-list">
+{{#each actor.items as |item id|}}
+{{#if (eq item.type ../itemType)}}
+    <li class="item" data-item-id="{{item._id}}">
+        <img src="{{item.img}}" title="{{item.name}}" width="24" height="24" />
+        <div class="item-name">{{item.name}}{{#if item.data.stackable}} ({{item.data.quantity}}){{/if}}</div>
+        {{#if (eq item.type 'equipment')}}
+        <div class="item-rolls">
+            {{#if (ne item.data.damageD10 0)}}
+            <a class="normal-roll" title="{{localize "htbah.sheet.actor.attackWith"}} {{item.name}}" data-roll="{{item.data.damageD10}}d10+({{item.data.damageModifier}}+mod)"><i class="fas fa-bolt"></i></a>
+            {{/if}}
+            {{#if (ne item.data.defenseModifier 0)}}
+            <a class="check-roll" title="{{localize "htbah.sheet.actor.defendWith"}} {{item.name}}" data-against="{{add ../actor.data.action.points item.data.defenseModifier}}" data-name="{{localize "htbah.sheet.actor.defendWith"}} {{item.name}}"><i class="fas fa-shield-alt"></i></a>
+            {{/if}}
+        </div>
+        {{/if}}
+        <div class="spacer"></div>
+        <div class="item-controls">
+            <a class="item-control item-edit" title="{{localize "htbah.general.edit"}}"><i class="fas fa-edit"></i></a>
+            <a class="item-control item-delete" title="{{localize "htbah.general.delete"}}"><i class="fas fa-trash"></i></a>
+        </div>
+    </li>
+{{/if}}
+{{/each}}
+</ol></br>
+{{else}}
+<p style="text-align:center;font-style: italic;">{{localize "htbah.sheet.actor.noItems"}}</p>
+{{/if}}

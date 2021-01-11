@@ -1,0 +1,43 @@
+ <header class="sheet-header pc">
+    <div class="name">
+        {{localize "htbah.sheet.general.name"}}</br>
+        <input name="name" type="text" value="{{actor.name}}" placeholder="{{localize "htbah.sheet.general.name"}}" />
+    </div>
+    <div class="picture">
+        <div class="portrait">
+            <img src="{{data.portrait}}" data-edit="data.portrait" title="{{actor.name}}"/>
+        </div>
+        {{#if canEditTokenImage}}
+        <div class="token-img-select">
+            <center><a class="token-img-edit">{{localize "htbah.sheet.actor.selectTokenImage"}}</a></center>
+        </div>
+        {{/if}}
+    </div>
+    <div class="gender">
+        {{localize "htbah.sheet.actor.gender"}}</br>
+        <input name="data.gender" type="text" value="{{data.gender}}" />
+    </div>
+    <div class="age">
+        {{localize "htbah.sheet.actor.age"}}</br>
+        <input type="number" name="data.age" value="{{data.age}}" data-dtype="Number" />
+    </div>
+    <div class="health">
+        {{localize "htbah.sheet.general.health"}}</br>
+        <input type="number" name="data.health.value" value="{{data.health.value}}" min="{{data.health.min}}" max="{{data.health.max}}" data-dtype="Number" />
+    </div>
+    <div class="physique">
+        {{localize "htbah.sheet.actor.physique"}}</br>
+        <input name="data.physique" type="text" value="{{data.physique}}" />
+        </div>
+    <div class="religion">
+        {{localize "htbah.sheet.actor.religion"}}</br>
+        <input name="data.religion" type="text" value="{{data.religion}}" />
+    </div>
+    <div class="job">
+        {{localize "htbah.sheet.actor.job"}}</br><input name="data.job" type="text" value="{{data.job}}" />
+    </div>
+    <div class="maritalStatus">
+        {{localize "htbah.sheet.actor.maritalStatus"}}</br>
+        <input name="data.maritalStatus" type="text" value="{{data.maritalStatus}}" />
+    </div>
+</header>

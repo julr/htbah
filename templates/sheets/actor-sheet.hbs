@@ -1,0 +1,20 @@
+<form class="{{cssClass}} {{#if config.heroStyle}}heroStyle{{/if}}" autocomplete="off">
+    {{#if config.heroStyle}}
+    <img class="header-image" src="/systems/htbah/assets/official/header-hero.png"/>
+    {{/if}}
+    <div class="form-container">
+        {{!-- Header --}}
+        {{#if (eq actor.type 'pc')}}
+            {{> "systems/htbah/templates/partials/actor-sheet-pc-header.hbs"}}
+        {{else}}
+            {{> "systems/htbah/templates/partials/actor-sheet-npc-header.hbs"}}
+        {{/if}}
+
+        {{!-- content --}}
+        {{#if (eq actor.type 'creature')}}
+            {{> "systems/htbah/templates/partials/actor-sheet-creature-content.hbs"}}
+        {{else}}
+            {{> "systems/htbah/templates/partials/actor-sheet-character-content.hbs"}}
+        {{/if}}
+    </div>
+</form>

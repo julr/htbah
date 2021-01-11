@@ -1,0 +1,86 @@
+{
+  "Actor": {
+    "types": ["pc", "npc", "creature"],
+    "templates":{
+      "general":{
+        "health": {
+          "value": 100,
+          "min": 0,
+          "max": 100
+        },
+        "description": ""
+      },
+      "skills": {
+        "action": {
+          "points": 0,
+          "brainstorm": 0
+        },
+        "knowledge": {
+          "points": 0,
+          "brainstorm": 0
+        },
+        "social": {
+          "points": 0,
+          "brainstorm": 0
+        }
+      },
+      "player": {
+        "gender": "",
+        "age": 0,
+        "physique": "",
+        "religion": "",
+        "job": "",
+        "maritalStatus": "",
+        "portrait": "systems/htbah/assets/portrait-empty.svg"
+      },
+      "creature": {
+        "attackD10": 0,
+        "attackModifier": 0,
+        "action": {
+          "points": 0
+        }
+      }
+    },
+
+    "pc": {
+      "templates": ["general", "skills", "player"]
+    },
+    "npc": {
+      "templates": ["general", "skills"]
+    },
+    "creature": {
+      "templates": ["general", "creature"]
+    }
+  },
+
+  "Item": {
+    "types": ["simple", "equipment", "skill"],
+    "templates":{
+      "general": {
+        "description": ""
+      },
+      "stack" : {
+        "stackable": false,
+        "quantity": 1
+      },
+      "equipment": {
+        "damageD10": 0,
+        "damageModifier": 0,
+        "defenseModifier": 0
+      },
+      "skill": {
+        "category": 0,
+        "points": 0
+      }
+    },
+    "simple": {
+      "templates": ["general", "stack"]
+    },
+    "equipment": {
+      "templates": ["general", "stack", "equipment"]
+    },
+    "skill" : {
+      "templates": ["general", "skill"]
+    }
+  }
+}

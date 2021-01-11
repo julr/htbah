@@ -1,0 +1,263 @@
+/* remove padding from window content so sheet can be styled fully */
+.htbah.window-app .window-content{
+  padding: 0px;
+}
+
+.htbah.sheet form{
+  display: flex;
+  flex-direction: column;
+}
+
+.htbah.sheet .form-container
+{
+  display: flex;
+  flex-direction: column;
+  padding: 8px;
+  height: 100%;
+  position: relative;
+}
+
+.htbah.sheet .spacer {
+  flex: auto;
+}
+
+.htbah .sheet-header{
+  padding-bottom: 10px;
+}
+
+/* Background color for hero Style*/
+.htbah.sheet form.heroStyle{ 
+  background-color: #509B4B;
+}
+
+.htbah.sheet img.header-image{
+  width: 100%;
+  border: none;
+}
+
+/* remove border from navigation so it can be adde manually */
+.htbah.sheet nav.sheet-tabs
+{
+  border-bottom: none;
+}
+
+/* Override default image size */
+/*
+.htbah.sheet header.sheet-header img {
+  height: 100%;
+}
+*/
+
+.htbah.sheet .sheet-content {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  border-top: 1px solid #b5b3a4;
+}
+
+.htbah.sheet .sheet-content .editor {
+  height: 100%;
+}
+
+.htbah.sheet .sheet-content .tab.active {
+  height: 100%;
+}
+
+
+/****** item sheet specific *******/
+.htbah.sheet .item-stats
+{
+  border-bottom: 1px solid #b5b3a4;
+  display: flex;
+  flex-direction: row;
+}
+
+.htbah.sheet .item-stats input
+{
+  width: 25px;
+  margin: 5px 0 5px 5px;
+}
+
+.htbah.sheet .item-stats label
+{
+  align-self: center;
+}
+
+/******* Character specific *********/
+/* header */
+
+.htbah .sheet-header.pc {
+  display: grid;
+  /*grid-template-columns: repeat(9, 1fr); */
+  /*grid-auto-rows: minmax(100px, auto);*/
+  grid-template-areas: 
+    "nm nm nm nm pc pc"
+    "gd gd ag hp pc pc"
+    "ps ps rg rg pc pc"
+    "jb jb ms ms pc pc";
+  justify-content: stretch;
+}
+
+.htbah .sheet-header.pc .name { grid-area: nm; }
+.htbah .sheet-header.pc .gender { grid-area: gd; }
+.htbah .sheet-header.pc .age { grid-area: ag; }
+.htbah .sheet-header.pc .health { grid-area: hp; }
+.htbah .sheet-header.pc .physique { grid-area: ps; }
+.htbah .sheet-header.pc .religion { grid-area: rg; }
+.htbah .sheet-header.pc .job { grid-area: jb; }
+.htbah .sheet-header.pc .maritalStatus { grid-area: ms; }
+.htbah .sheet-header.pc .picture { 
+  grid-area: pc;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.htbah.sheet header.sheet-header .picture img {
+  max-height: 200px;
+  width: 100%;
+  height: 100%;
+  margin: 0px;
+}
+
+.htbah.sheet header.sheet-header .picture .portrait {
+  display: flex;
+  justify-content: center;
+}
+
+.htbah.sheet header.sheet-header .picture .token-img-select {
+  margin-top: 5px;
+}
+
+/* monster stats */
+.htbah.sheet .monster-stats
+{
+  border-top: 1px solid #b5b3a4;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.htbah.sheet .monster-stats input
+{
+  width: 25px;
+  margin: 5px 0 5px 5px;
+}
+
+.htbah.sheet .monster-stats label
+{
+  align-self: center;
+}
+
+.htbah.sheet .monster-stats a
+{
+  margin-left: 5px;
+}
+
+/* Item listing */
+.htbah.sheet ol.item-list {
+  list-style-type: none;
+  padding-left: 1em;
+  padding-right: 1em;
+}
+
+.htbah.sheet li.item {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.htbah.sheet .item-list .item img {
+  margin-right: 5px;
+}
+
+.htbah.sheet .item-list .item .item-rolls {
+  margin-left: 5px;
+}
+
+/* Skill listing */
+.htbah.sheet .tab.skills.active {
+  justify-content: space-between;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+
+/* Create three equal columns that floats next to each other */
+.htbah.sheet .skill-column {
+  float: left;
+  width: 33.33%;
+  padding: 5px;
+  position: relative;
+}
+.htbah.sheet .skill-content:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.htbah.sheet .skill-info {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.htbah.sheet .skill-info b {
+  margin-right: 5px;
+}
+
+.htbah.sheet .skill-info a {
+  margin-left: 3px;
+}
+
+.htbah.sheet .brainstorm-edit {
+  width: min-content;
+  margin-left: 3px;
+}
+
+.htbah.sheet .skill-add {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+}
+
+.htbah.sheet .skill-edit {
+  width: 25px;
+}
+
+.htbah.sheet .skill-table {
+  border-bottom: none;
+  border-top: none;
+  background: none;
+}
+
+.htbah.sheet .skill-table tr {
+  background: none;
+}
+
+.htbah.sheet .skill-table td {
+  padding-left: 0px;
+}
+
+.htbah.sheet .skill-table td:first-child {
+  width: 100%;
+}
+
+.htbah.sheet .skill-table td:nth-last-child(2) {
+  padding-left: 7px;
+}
+
+.htbah.sheet .skill-table td:last-child {
+  padding-left: 5px;
+}
+
+.htbah.sheet .total-skill-points{
+  padding-top: 5px;
+}

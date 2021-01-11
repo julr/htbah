@@ -1,0 +1,47 @@
+<form class="{{cssClass}}" autocomplete="off">
+    <div class="form-container">
+        <header class="sheet-header">
+            <img src="{{item.img}}" data-edit="img" title="{{item.name}}" height="64" width="64"/>
+            <h1><input name="name" type="text" value="{{item.name}}" placeholder="{{localize "htbah.sheet.general.name"}}"/></h1>
+            {{#if (eq data.stackable true)}}
+            <div style="flex: initial;">
+                {{localize "htbah.sheet.general.count"}}</br>
+                <input name="data.quantity" type="number" min="0"  value="{{data.quantity}}" data-dtype="Number">
+            </div>
+            {{/if}}
+        </header>
+        <div class="sheet-content">
+            {{#if (eq item.type 'equipment')}}
+            <div class="item-stats">
+                <label for="dmg1"><b>{{localize "htbah.sheet.item.damage"}}:</b></label>
+                <input id="dmg1" name="data.damageD10" type="number" min="0" value="{{data.damageD10}}" data-dtype="Number">
+                <label for="dmg2">{{localize "htbah.general.diceAbbrev"}}10 +</label>
+                <input id="dmg2" name="data.damageModifier" type="number" value="{{data.damageModifier}}" data-dtype="Number">
+                <label for="def" style="margin-left: 2em;"><b>{{localize "htbah.sheet.item.defense"}}:</b></label>
+                <input id="def" name="data.defenseModifier" type="number" value="{{data.defenseModifier}}" data-dtype="Number">
+            </div>
+            {{else if (eq item.type 'skill')}}
+            <div class="item-stats">
+                <label for="points"><b>{{localize "htbah.sheet.general.points"}}:</b></label>
+                <input id="points" name="data.points" type="number" min="0" value="{{data.points}}" data-dtype="Number">
+                <label style="margin-left: 2em;"><b>{{localize "htbah.sheet.item.category"}}:</b>
+                    <select name="data.category" data-dtype="Number">
+                        <option value="0" {{#if (eq data.category 0)}}selected{{/if}}>{{localize "htbah.sheet.general.action"}}</option>
+                        <option value="1" {{#if (eq data.category 1)}}selected{{/if}}>{{localize "htbah.sheet.general.knowledge"}}</option>
+                        <option value="2" {{#if (eq data.category 2)}}selected{{/if}}>{{localize "htbah.sheet.general.social"}}</option>
+                    </select>
+                </label>
+            </div>
+            {{/if}}
+            <h1>{{localize "htbah.sheet.general.description"}}</h1>
+            {{editor content=data.description target="data.description" button=true owner=owner editable=editable}}
+        </div>
+        {{#if (ne item.type 'skill')}}
+        {{#if isGM}}
+        <div class="item-stack-toggle">
+            <a class="stack-toggle" title="{{localize "htbah.sheet.item.toggleStack"}}" data-id="{{item._id}}"><i class="fas fa-layer-group"></i></a>
+        </div>
+        {{/if}}
+        {{/if}}
+    </div>
+</form>

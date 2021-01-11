@@ -1,0 +1,27 @@
+<div class="monster-stats">
+    <label for="attack1"><b>{{localize "htbah.sheet.actor.attack"}}:</b></label>
+    <input id="attack1" name="data.attackD10" type="number" min="0" value="{{data.attackD10}}" data-dtype="Number">
+    <label for="attack2">{{localize "htbah.general.diceAbbrev"}}10 +</label>
+    <input id="attack2" name="data.attackModifier" type="number" value="{{data.attackModifier}}" data-dtype="Number">
+    <a class="normal-roll" title="{{localize "htbah.sheet.actor.attack"}}" data-roll="{{data.attackD10}}d10+({{data.attackModifier}}+mod)"><i class="fas fa-bolt"></i></a>
+
+    <label for="action" style="margin-left: 2em;"><b>{{localize "htbah.sheet.general.action"}}:</b></label>
+    <input id="action" name="data.action.points" type="number" value="{{data.action.points}}" data-dtype="Number">
+    <a class="normal-roll" title="{{localize "htbah.sheet.actor.initiative"}}" data-roll="1d10+({{data.action.points}}+mod)"><i class="fas fa-people-arrows"></i></a>
+    <a class="check-roll" title="{{localize "htbah.sheet.actor.defend"}}" data-against="{{data.action.points}}" data-name="{{localize "htbah.sheet.actor.defend"}}"><i class="fas fa-shield-alt"></i></a>
+</div>
+
+<nav class="sheet-tabs tabs" data-group="primary">
+    <a class="item" data-tab="items">{{localize "htbah.sheet.actor.inventory"}}</a>
+    <a class="item" data-tab="biography">{{localize "htbah.sheet.general.description"}}</a>
+</nav>
+
+<div class="sheet-content">
+    <div class="tab items" data-group="primary" data-tab="items">
+        {{> "systems/htbah/templates/partials/actor-sheet-tab-items-content.hbs" itemType="equipment" name="ITEM.TypeEquipment"}}
+        {{> "systems/htbah/templates/partials/actor-sheet-tab-items-content.hbs" itemType="simple" name="ITEM.TypeSimple"}}
+    </div>
+    <div class="tab biography" data-group="primary" data-tab="biography">
+        {{editor content=data.description target="data.description" button=true owner=owner editable=editable}}
+    </div>
+</div>
