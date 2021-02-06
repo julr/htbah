@@ -2,6 +2,7 @@ import { htbah, readConfig } from './config.js';
 import HTBAHActor from './actor/entity.js';
 import HTBAHItemSheet from './item/sheet.js';
 import HTBAHActorSheet from './actor/sheet.js';
+import { checkRoll } from './roll.js';
 
 async function preloadHandlebarsTemplates() {
     const templatePaths = [
@@ -94,4 +95,23 @@ Hooks.once("init", function () {
         }
         return spentPoints;
     });
+
+    Hooks.on("chatMessage", (chatlog, messageText, chatData) => {
+        return handleChatMessage(chatlog, messageText, chatData);
+    });
 });
+
+function handleChatMessage(chatlog, messageText, chatData) {
+    const re = new RegExp("^\\/check\\s(\\d{1,3})\\s?(.*)?$","gi");
+    const match = re.exec(messageText);
+
+    if(match) {
+        const checkAgainst = parseInt(match[1], 10);
+        const checkText = (match[2]) ? match[2] : game.i18n.localize("htbah.general.unknown");
+        const actor = (chatData.speaker.actor) ? game.actors.get(chatData.speaker.actor) : chatData.speaker.alias;
+        checkRoll(checkAgainst, checkText, chatData.user, actor);
+        return false;
+    }
+    
+    return true;
+}

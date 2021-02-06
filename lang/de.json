@@ -8,6 +8,7 @@
       "cancel": "Abbrechen",
       "delete": "Löschen",
       "edit": "Bearbeiten",
+      "unknown": "Unbekannt",
 
       "checkMessage": "<b>{name}</b> wirft eine Probe auf <i>{skill}</i>:",
       "success": "<b>Erfolg!</b>",

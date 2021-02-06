@@ -10,7 +10,7 @@ export function normalRoll(formula, rollData, text, user, speaker, modifier = "0
     });
 }
 
-export function checkRoll(checkAgainst, checkName, user, speaker, modifier = 0) {
+export function checkRoll(checkAgainst, checkName, user, actor = null, modifier = 0) {
     let target = parseInt(checkAgainst, 10);
     target += modifier;
 
@@ -28,7 +28,12 @@ export function checkRoll(checkAgainst, checkName, user, speaker, modifier = 0) 
         fatal = (r.total <= fatalSuccess);
     } //else -> Normal failure (default)
 
-    let message = game.i18n.format("htbah.general.checkMessage", { name: speaker.data.name, skill: checkName }) + " ";
+    let speakerName = game.i18n.localize("htbah.general.unknown");
+    if(actor)  {
+        speakerName = (typeof actor === 'string') ? actor :  actor.data.name;
+    }
+
+    let message = game.i18n.format("htbah.general.checkMessage", { name: speakerName, skill: checkName }) + " ";
     if (success && fatal) message += game.i18n.localize("htbah.general.fatalSuccess");
     else if (success) message += game.i18n.localize("htbah.general.success");
     else if (fatal) message += game.i18n.localize("htbah.general.fatalFailure");
@@ -39,7 +44,7 @@ export function checkRoll(checkAgainst, checkName, user, speaker, modifier = 0) 
         roll: r,
         rollMode: game.settings.get("core", "rollMode"),
         user: user,
-        speaker: ChatMessage.getSpeaker({ actor: speaker }),
+        speaker: ChatMessage.getSpeaker({ actor: actor }),
         flavor: message
     };
     ChatMessage.create(chatOptions);

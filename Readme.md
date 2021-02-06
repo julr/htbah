@@ -14,4 +14,4 @@ Zum aktuellen Zeitpunkt ist nur das Grundregelwerk umgesetzt. Die Unterstützung
 ## Lizenz
 Dieses Projekt selber steht unter MIT Lizenz (siehe License.txt)
 
-Die Header Grafiken im Ordner assets/official sowie das Regelwerk stammen aus dem offiziellen [How to be a Hero Wiki](https://howtobeahero.de/) und stehen unter [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/) Lizenz
+Die Grafiken im Ordner assets/official sowie das Regelwerk stammen aus dem offiziellen [How to be a Hero Wiki](https://howtobeahero.de/) und stehen unter [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/) Lizenz
