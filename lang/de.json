@@ -14,7 +14,9 @@
       "success": "<b>Erfolg!</b>",
       "failure": "<b>Fehlschlag!</b>",
       "fatalSuccess": "<b>Kritischer Erfolg!</b>",
-      "fatalFailure": "<b>Kritischer Fehlschlag!</b>"
+      "fatalFailure": "<b>Kritischer Fehlschlag!</b>",
+
+      "setMaxHp": "Maximale Lebenspunkte festlegen"
     },
 
     "sheet": {

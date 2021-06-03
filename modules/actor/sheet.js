@@ -47,6 +47,14 @@ export default class HTBAHActorSheet extends ActorSheet {
                     this.actor.deleteOwnedItem(element.data("item-id"));
                 }
             }]);
+
+            if(game.user.isGM) {
+                new ContextMenu(html, ".health", [{
+                    name: game.i18n.localize("htbah.general.setMaxHp"),
+                    icon: '<i class="fas fa-arrow-alt-circle-up"></i>',
+                    callback: () => this._onMaxHpEdit()
+                }]);
+            }
         }
 
         if (this.actor.owner) {
@@ -245,5 +253,37 @@ export default class HTBAHActorSheet extends ActorSheet {
             }
         });
         return fp.browse();
+    }
+
+    _onMaxHpEdit() {
+        console.log(this.actor);
+        const currentMax = this.actor.data.data.health.max;
+        let d = new Dialog({
+            title: game.i18n.localize("htbah.general.setMaxHp"),
+            content: '<form><input type="number" id="value" name="value" value="' + currentMax + '" autofocus></form>',
+            buttons: {
+                ok: {
+                    icon: '<i class="fas fa-check"></i>',
+                    label: game.i18n.localize("htbah.general.ok"),
+                    callback: (html) => {
+                        const newMax = parseInt(html.find('#value').val());
+                        if (!isNaN(newMax)){
+                            const currentHealth = this.actor.data.data.health.value;
+                            //Set hp of actor to new max if max is less than old hp or if hp == old max (assumes that it is a new/untouched actor) 
+                            const newHealth = ((newMax > currentHealth) || (currentMax == currentHealth)) ? newMax : currentHealth;
+                            this.actor.update({ 
+                                ["data.health.value"] : newHealth,
+                                ["data.health.max"] : newMax 
+                            });
+                        }
+                    }
+                }
+            },
+            default: "ok" //Dialog crashes when this does not exist but according to documentation it should be part of the options
+        }, {
+            default: "ok",
+            jQuery: true
+        });
+        d.render(true);
     }
 }
