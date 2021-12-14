@@ -46,7 +46,7 @@ Hooks.once("init", function () {
     CONFIG.htbah = htbah;
 
     // Override default actort class
-    CONFIG.Actor.entityClass = HTBAHActor;
+    CONFIG.Actor.documentClass = HTBAHActor;
 
     Actors.unregisterSheet("core", ActorSheet); //unregister default (core)
     Actors.registerSheet("htbah", HTBAHActorSheet, { makeDefault: true }); //register systems sheet
@@ -74,9 +74,9 @@ Hooks.once("init", function () {
         return Math.round(aInt/bInt);
     });
 
-    Handlebars.registerHelper("hasItems", function (actor, type) {
-        for (let i = 0; i < actor.items.length; ++i) {
-            if (actor.items[i].type == type) {
+    Handlebars.registerHelper("hasItems", function (items, type) {
+        for (let i = 0; i < items.length; ++i) {
+            if (items[i].type == type) {
                 return true;
             }
         }

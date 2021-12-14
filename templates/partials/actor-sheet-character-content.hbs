@@ -19,7 +19,7 @@
         </div>
         {{#if config.totalSkillPoints}}
         <div class="total-skill-points">
-            <b>{{localize "htbah.sheet.actor.spentSkillPoints"}}:</b> {{totalSkillPointsSpent actor.items}}
+            <b>{{localize "htbah.sheet.actor.spentSkillPoints"}}:</b> {{totalSkillPointsSpent actorData.items}}
         </div>
         {{/if}}
     </div>
@@ -28,6 +28,8 @@
         {{> "systems/htbah/templates/partials/actor-sheet-tab-items-content.hbs" itemType="simple" name="ITEM.TypeSimple"}}
     </div>
     <div class="tab biography" data-group="primary" data-tab="biography">
-        {{editor content=data.description target="data.description" button=true owner=owner editable=editable}}
+        {{log owner}}
+        {{log editable}}
+        {{editor content=actorData.data.description target="data.description" button=true owner=owner editable=editable}}
     </div>
 </div>

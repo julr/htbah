@@ -14,11 +14,15 @@ export default class HTBAHActorSheet extends ActorSheet {
     }
 
     getData() {
-        const data = super.getData();
-        data.config = CONFIG.htbah;
-        data.canEditTokenImage = game.user.hasPermission("FILES_BROWSE");
-
-        return data;
+        const baseData = super.getData();
+        let sheetData = {};
+        sheetData.config = CONFIG.htbah;
+        sheetData.canEditTokenImage = game.user.hasPermission("FILES_BROWSE");
+        sheetData.actorData = baseData.actor.data;
+        sheetData.editable = baseData.editable;
+        sheetData.owner = baseData.owner;
+        sheetData.cssClass = baseData.cssClass;
+        return sheetData;
     }
 
     activateListeners(html) {
@@ -57,7 +61,7 @@ export default class HTBAHActorSheet extends ActorSheet {
             }
         }
 
-        if (this.actor.owner) {
+        if (this.actor.isOwner) {
             //Rollable links
             html.find('a.normal-roll').on("click", this._onNormalRoll.bind(this));
             html.find('a.check-roll').on("click", this._onCheckRoll.bind(this));
@@ -140,7 +144,7 @@ export default class HTBAHActorSheet extends ActorSheet {
                                     points: 0
                                 }
                             }
-                            this.actor.createOwnedItem(skillData);
+                            this.actor.createEmbeddedDocuments(skillData);
                         }
                     },
                     cancel: {

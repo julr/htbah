@@ -10,11 +10,12 @@ export default class HTBAHItemSheet extends ItemSheet {
     }
 
     getData() {
-        const data = super.getData();
-        data.config = CONFIG.htbah;
-        data.isGM = game.user.isGM;
-        console.log(data.config);
-        return data;
+        const baseData = super.getData();
+        console.log(baseData);
+        let sheetData = {};
+        sheetData.config = CONFIG.htbah;
+        sheetData.isGM = game.user.isGM;
+        return sheetData;
     }
 
     activateListeners(html) {

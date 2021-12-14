@@ -6,7 +6,7 @@
     <a class="normal-roll" title="{{localize "htbah.sheet.actor.initiative"}}" data-roll="1d10+({{skills.points}}+mod)"><i class="fas fa-people-arrows"></i></a>
     {{/if}}
     {{! only pc have brainstorm points}}
-    {{#if (eq actor.type 'pc')}}
+    {{#if (eq actorData.type 'pc')}}
     <div class="spacer"></div>
     <i class="fas fa-brain"></i>
     <input class="brainstorm-edit" type="number" value="{{skills.brainstorm}}" min="0" max="{{divRounded skills.points 10}}" data-category="{{category}}" />
