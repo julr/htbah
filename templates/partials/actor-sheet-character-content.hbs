@@ -8,18 +8,18 @@
     <div class="tab skills" data-group="primary" data-tab="skills">
         <div class="skill-content">
             <div class="skill-column">
-                {{> "systems/htbah/templates/partials/actor-sheet-tab-skills-content.hbs" skills=data.action name="htbah.sheet.general.action" category=0}}
+                {{> "systems/htbah/templates/partials/actor-sheet-tab-skills-content.hbs" skills=actorData.data.action name="htbah.sheet.general.action" category=0}}
             </div>
             <div class="skill-column">
-                {{> "systems/htbah/templates/partials/actor-sheet-tab-skills-content.hbs" skills=data.knowledge name="htbah.sheet.general.knowledge" category=1}}
+                {{> "systems/htbah/templates/partials/actor-sheet-tab-skills-content.hbs" skills=actorData.data.knowledge name="htbah.sheet.general.knowledge" category=1}}
             </div>
             <div class="skill-column">
-                {{> "systems/htbah/templates/partials/actor-sheet-tab-skills-content.hbs" skills=data.social name="htbah.sheet.general.social" category=2}}
+                {{> "systems/htbah/templates/partials/actor-sheet-tab-skills-content.hbs" skills=actorData.data.social name="htbah.sheet.general.social" category=2}}
             </div>
         </div>
         {{#if config.totalSkillPoints}}
         <div class="total-skill-points">
-            <b>{{localize "htbah.sheet.actor.spentSkillPoints"}}:</b> {{totalSkillPointsSpent actorData.items}}
+            <b>{{localize "htbah.sheet.actor.spentSkillPoints"}}:</b> {{actorData.data.totalSkills}}
         </div>
         {{/if}}
     </div>

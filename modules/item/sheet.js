@@ -15,6 +15,8 @@ export default class HTBAHItemSheet extends ItemSheet {
         let sheetData = {};
         sheetData.config = CONFIG.htbah;
         sheetData.isGM = game.user.isGM;
+        sheetData.item = baseData.data;
+        sheetData.data = baseData.data.data;
         return sheetData;
     }
 

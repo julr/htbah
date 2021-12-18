@@ -1,5 +1,5 @@
 <h3>{{localize name}}</h3>
-{{#if (hasItems actorData.items itemType)}}
+{{#if (hasItems actor.items itemType)}}
 <ol class="item-list">
 {{#each actor.items as |item id|}}
 {{#if (eq item.type ../itemType)}}
