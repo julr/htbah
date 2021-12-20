@@ -40,7 +40,7 @@ export function checkRoll(checkAgainst, checkName, user, actor = null, modifier 
     else message += game.i18n.localize("htbah.general.failure");
 
     let chatOptions = {
-        type: CHAT_MESSAGE_TYPES.ROLL,
+        type: CONST.CHAT_MESSAGE_TYPES.ROLL,
         roll: r,
         rollMode: game.settings.get("core", "rollMode"),
         user: user,

@@ -9,7 +9,9 @@
     {{#if (eq actorData.type 'pc')}}
     <div class="spacer"></div>
     <i class="fas fa-brain"></i>
-    <input class="brainstorm-edit" type="number" value="{{skills.brainstorm}}" min="0" max="{{divRounded skills.points 10}}" data-category="{{category}}" />
+    <input class="brainstorm-edit" type="number" value="{{skills.brainstorm.value}}" min="0" max="{{skills.brainstorm.max}}" data-category="{{category}}" />
+    /
+    {{skills.brainstorm.max}}
     {{/if}}
 </div>
 <table class="skill-table">

@@ -1,31 +1,40 @@
 export default class HTBAHActor extends Actor {
 
     prepareDerivedData() {
+        super.prepareDerivedData();
         const actorData = this.data;
         const data = actorData.data;
 
         // skills are only relevant for pc and npc
-        if(actorData.type == 'pc' || actorData.type == 'npc')
+        if(actorData.type === 'pc' || actorData.type === 'npc')
         {
-            let skillPointsSpent = [0,0,0];
-            for (let i = 0; i < actorData.items.length; ++i) {
-                if(actorData.items[i].type == 'skill') {
+            let skillPointsSpent = {
+                action: 0,
+                knowledge: 0,
+                social: 0,
+            };
+            for (let item of this.items) {
+                const itemData = item.data;
+                if(itemData.type === 'skill') {
                     //if for some reason skill point are not saved as int, convert them
-                    let currentSkillPoints = parseInt(actorData.items[i].data.points, 10);
-                    let currentSkillCategory = parseInt(actorData.items[i].data.category, 10);
-                    if(!isNaN(currentSkillPoints) && !isNaN(currentSkillCategory))
+                    let currentSkillPoints = parseInt(itemData.data.points);
+                    let currentSkillCategory = ["action", "knowledge", "social"][itemData.data.category];
+                    if(!isNaN(currentSkillPoints) && currentSkillCategory != null)
                     {
                         skillPointsSpent[currentSkillCategory] += currentSkillPoints;
                     }
                 }
             }
-            const actionPoints = Math.round(skillPointsSpent[0]/10);
-            const knowledgePoints = Math.round(skillPointsSpent[1]/10);
-            const socialPoints = Math.round(skillPointsSpent[2]/10);
 
-            data.action.points = actionPoints;
-            data.knowledge.points = knowledgePoints;
-            data.social.points = socialPoints;
+            data.totalSkills = 0
+            for (const category in skillPointsSpent) {
+                const pointsSpent = skillPointsSpent[category];
+                data.totalSkills += pointsSpent;
+
+                data[category].points = Math.round(pointsSpent / 10);
+                data[category].brainstorm.max = Math.round(pointsSpent / 100);
+                data[category].brainstorm.value = Math.min(data[category].brainstorm.value, data[category].brainstorm.max);
+            }
         }
 
         //limit HP

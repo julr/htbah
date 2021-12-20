@@ -1,4 +1,4 @@
-import { normalRoll, checkRoll } from './../roll.js';
+import { normalRoll, checkRoll } from '../roll.js';
 
 export default class HTBAHActorSheet extends ActorSheet {
 
@@ -22,6 +22,13 @@ export default class HTBAHActorSheet extends ActorSheet {
         sheetData.editable = baseData.editable;
         sheetData.owner = baseData.owner;
         sheetData.cssClass = baseData.cssClass;
+        sheetData.actor = {};
+
+        const items = this.object.items.map(i => foundry.utils.deepClone(i.data));
+        items.sort((a, b) => (a.sort || 0) - (b.sort || 0));
+        sheetData.actor.items = items;
+
+
         return sheetData;
     }
 
@@ -41,14 +48,14 @@ export default class HTBAHActorSheet extends ActorSheet {
                 name: game.i18n.localize("htbah.general.edit"),
                 icon: '<i class="fas fa-edit"></i>',
                 callback: element => {
-                    const item = this.actor.getOwnedItem(element.data("item-id"));
+                    const item = this.actor.items.get(element.data("item-id"));
                     item.sheet.render(true);
                 }
             }, {
                 name: game.i18n.localize("htbah.general.delete"),
                 icon: '<i class="fas fa-trash"></i>',
                 callback: element => {
-                    this.actor.deleteOwnedItem(element.data("item-id"));
+                    this.actor.items.get(element.data("item-id")).delete();
                 }
             }]);
 
@@ -72,14 +79,14 @@ export default class HTBAHActorSheet extends ActorSheet {
     _onItemEdit(event) {
         event.preventDefault();
         const li = $(event.currentTarget).parents(".item");
-        const item = this.actor.getOwnedItem(li.data("itemId"));
+        const item = this.actor.items.get(li.data("itemId"));
         item.sheet.render(true);
     }
 
     _onItemDelete(event) {
         event.preventDefault();
         const li = $(event.currentTarget).parents(".item");
-        this.actor.deleteOwnedItem(li.data("itemId"));
+        this.actor.items.get(li.data("itemId")).delete();
         li.slideUp(200, () => this.render(false));
     }
 
@@ -88,23 +95,10 @@ export default class HTBAHActorSheet extends ActorSheet {
         const input = event.currentTarget;
         const categoryId = input.dataset.category;
         const points = parseInt(input.value, 10);
-        let category = "";
-        switch (categoryId) {
-            case "0":
-                category = "action";
-                break;
-            case "1":
-                category = "knowledge";
-                break;
-            case "2":
-                category = "social";
-                break;
-            default:
-                return;
-        }
+        let category = ["action", "knowledge", "social"][parseInt(categoryId)];
 
         if (!isNaN(points)) {
-            return this.actor.update({ ["data." + category + ".brainstorm"]: points });
+            return this.actor.update({ ["data." + category + ".brainstorm.value"]: points });
         }
     }
 
@@ -113,7 +107,7 @@ export default class HTBAHActorSheet extends ActorSheet {
         const input = event.currentTarget;
         const id = input.dataset.id;
         const skillPoints = parseInt(input.value, 10);
-        let item = this.actor.getOwnedItem(id);
+        let item = this.actor.items.get(id);
         if (!isNaN(skillPoints)) {
             return item.update({ ["data.points"]: skillPoints });
         }
@@ -144,7 +138,7 @@ export default class HTBAHActorSheet extends ActorSheet {
                                     points: 0
                                 }
                             }
-                            this.actor.createEmbeddedDocuments(skillData);
+                            this.actor.createEmbeddedDocuments("Item", [skillData]);
                         }
                     },
                     cancel: {
@@ -180,7 +174,7 @@ export default class HTBAHActorSheet extends ActorSheet {
                         callback: (html) => {
                             let modVal = html.find('#mod').val();
                             if (isNaN(parseInt(modVal, 10))) modVal = "0";
-                            normalRoll(formula, rollData, text, game.user._id, this.actor, modVal);
+                            normalRoll(formula, rollData, text, game.user.id, this.actor, modVal);
                         }
                     }
                 },
@@ -193,7 +187,7 @@ export default class HTBAHActorSheet extends ActorSheet {
         }
         else //Roll directly
         {
-            normalRoll(formula, rollData, text, game.user._id, this.actor);
+            normalRoll(formula, rollData, text, game.user.id, this.actor);
         }
     }
 
@@ -214,7 +208,7 @@ export default class HTBAHActorSheet extends ActorSheet {
                         callback: (html) => {
                             let modVal = parseInt(html.find('#mod').val());
                             if (isNaN(modVal)) modVal = 0;
-                            checkRoll(target, name, game.user._id, this.actor, modVal);
+                            checkRoll(target, name, game.user.id, this.actor, modVal);
                         }
                     }
                 },
@@ -227,7 +221,7 @@ export default class HTBAHActorSheet extends ActorSheet {
         }
         else //Roll directly
         {
-            checkRoll(target, name, game.user._id, this.actor);
+            checkRoll(target, name, game.user.id, this.actor);
         }
     }
 

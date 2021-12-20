@@ -12,16 +12,19 @@
       },
       "skills": {
         "action": {
-          "points": 0,
-          "brainstorm": 0
+          "brainstorm": {
+            "value": 0
+          }
         },
         "knowledge": {
-          "points": 0,
-          "brainstorm": 0
+          "brainstorm": {
+            "value": 0
+          }
         },
         "social": {
-          "points": 0,
-          "brainstorm": 0
+          "brainstorm": {
+            "value": 0
+          }
         }
       },
       "player": {
