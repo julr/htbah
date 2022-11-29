@@ -1,3 +1,6 @@
+# PROJEKT EINGESTELLT
+Da ich keine digitalen Pen and Paper Runden mehr leite und generell keine Zeit für die Weiterentwicklung habe, wurde dieses Projekt von meinr Seite (vorerst) eingestellt.
+
 # How to be a Hero für Foundry VTT 
 > Dieses Projekt beinhaltet die Umsetzung des How to be a Hero Regelwerkes für das das Foundry Virtual Tabletop System.
 
